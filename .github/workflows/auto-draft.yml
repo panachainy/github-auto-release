@@ -3,7 +3,6 @@ name: Release Drafter
 on:
   pull_request:
     branches: [ release ]
-  push:
 
 jobs:
   update_release_draft:
