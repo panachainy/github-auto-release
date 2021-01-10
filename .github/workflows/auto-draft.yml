@@ -12,4 +12,4 @@ jobs:
         with:
           config-name: release-drafter.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.ALL_RELEASE }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
