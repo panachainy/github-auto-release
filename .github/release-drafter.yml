@@ -1,31 +1,32 @@
 template: |
-  # What's Changed
+  ## Changes
+
   $CHANGES
 categories:
-  - title: 'Breaking'
-    label: 'type: breaking'
-  - title: 'New'
-    label: 'type: feature'
-  - title: 'Bug Fixes'
-    label: 'type: bug'
-  - title: 'Maintenance'
-    label: 'type: maintenance'
+  - title: '🚀 Features'
+    labels:
+      - 'feature'
+      - 'enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bug'
+  - title: '🧰 Maintenance'
+    label: 'chore'
   - title: 'Documentation'
     label: 'type: docs'
   - title: 'Dependency Updates'
     label: 'type: dependencies'
-
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 version-resolver:
   major:
     labels:
-      - 'type: breaking'
+      - 'major'
   minor:
     labels:
-      - 'type: feature'
+      - 'minor'
   patch:
     labels:
-      - 'type: bug'
-      - 'type: maintenance'
-      - 'type: docs'
-      - 'type: dependencies'
-      - 'type: security'
+      - 'patch'
+  default: patch
