@@ -2,9 +2,7 @@ name: Release Drafter
 
 on:
   pull_request:
-    # branches to consider in the event; optional, defaults to all
-    branches:
-      - develop
+    branches: [ develop ]
 
 jobs:
   update_release_draft:
@@ -14,4 +12,4 @@ jobs:
         with:
           config-name: release-drafter.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ALL_RELEASE }}
