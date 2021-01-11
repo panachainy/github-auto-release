@@ -1,3 +1,5 @@
+name-template: 'v$RESOLVED_VERSION 🌈'
+tag-template: 'v$RESOLVED_VERSION'
 template: |
   ## Changes
 
@@ -7,6 +9,7 @@ categories:
     labels:
       - 'feature'
       - 'enhancement'
+      - 'optimise'
   - title: '🐛 Bug Fixes'
     labels:
       - 'fix'
