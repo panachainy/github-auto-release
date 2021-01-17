@@ -1,7 +1,15 @@
-# Github auto draft release
+# Github Actions
+
+> Medium: https://panachai-ny.medium.com/github-actions-auto-draft-release-with-github-actions-fae5a532029
+
+## Auto draft release
 
 Action command: `.github/workflows/auto-draft.yml`
 
 Template: `.github/release-drafter.yml`
 
-Medium: https://panachai-ny.medium.com/github-actions-auto-draft-release-with-github-actions-fae5a532029
+## Auto Labeler
+
+Action command: `.github/workflows/pr-labeler.yml`
+
+Template: `.github/pr-labeler.yml`
