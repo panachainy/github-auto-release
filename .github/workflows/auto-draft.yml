@@ -3,7 +3,6 @@ name: Release Drafter
 on:
   pull_request:
     branches: [ release ]
-  push:
 
 jobs:
   update_release_draft:
@@ -13,4 +12,4 @@ jobs:
         with:
           config-name: release-drafter.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
