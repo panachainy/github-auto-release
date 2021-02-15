@@ -14,11 +14,13 @@ baseUrl='https://api.github.com/repos/panachainy/github-auto-release/git/trees/d
 jsonData=`curl -H "Accept: application/vnd.github.v3+json" $baseUrl`
 
 # if tree use this
-echo $jsonData | json tree | json -a url
+echo $jsonData | json tree | json 0 | json type
+echo $jsonData | json tree | json 0 | json path
+echo $jsonData | json tree | json 0 | json url
 
 # == content ===============================================================================================================
 
 have_content=`curl https://api.github.com/repos/panachainy/github-auto-release/git/blobs/eb079ffdc682e0868619fda16817bad33afcbd9e`
 
 # if blob use this
-echo $have_content | sed ':a;N;$!ba;s/\n//g' | json content
+echo $have_content | sed ':a;N;$!ba;s/\n//g' | json content | base64 -d > readme.txt
