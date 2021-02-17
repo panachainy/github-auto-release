@@ -14,9 +14,13 @@ download_file() {
 
     _test_array=$(echo $_remove_new_line_tmp | json tree | json -a type)
 
-    echo $_test_array
+    for i in $_test_array
+    do
+        echo "Looping ... number $i"
+        # if tree -> nested 
+        # if blob -> export blob to file
+    done
 
-    # echo ${#_test_array)
 
     # Array use ${#arr} -> check length
 
