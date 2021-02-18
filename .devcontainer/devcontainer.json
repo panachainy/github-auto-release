@@ -1,0 +1,21 @@
+{
+    "name": "Bash",
+    "build": {
+        "dockerfile": "Dockerfile",
+    },
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "emeraldwalk.runonsave": {
+            "commands": [
+                {
+                    "match": "\\.sh$",
+                    "cmd": "./playground.sh"
+                }
+            ]
+        }
+    },
+    "extensions": [
+        "foxundermoon.shell-format",
+        "emeraldwalk.runonsave"
+    ]
+}
