@@ -45,4 +45,4 @@ directory_process() {
     fi
 }
 
-directory_process "https://api.github.com/repos/panachainy/github-auto-release/git/trees/develop" "tree"
+directory_process $1 "tree"
