@@ -1,10 +1,6 @@
-# Manual Install json
-
-# cd ~/bin
-# curl -L https://github.com/trentm/json/raw/master/lib/json.js > json
-# chmod 755 json
-
-# == general command =======================================================================================================
+get_data() {
+    _current_json_data=$(curl -H "Accept: application/vnd.github.v3+json" $1)
+}
 
 remove_new_line() {
     _remove_new_line_tmp=$(echo $1 | sed ':a;N;$!ba;s/\n//g')
@@ -15,26 +11,38 @@ write_file_from_blob_type() {
     echo $_remove_new_line_tmp | json content | base64 -d >$2
 }
 
-download_file() {
-    _type=$($1 | json tree | json 0 | json type)
-    echo $_type
-    # if [ $_type == 'bob' ]
-    # echo $1 | json tree | json 0 | json type
-    # echo $1 | json tree | json 0 | json path
-    # echo $1 | json tree | json 0 | json url
+# url / type / path
+directory_process() {
+    get_data "$1"
+    remove_new_line "$_current_json_data"
+
+    if [ "$2" = "tree" ]; then
+
+        types=$(echo $_remove_new_line_tmp | json tree | json -a type)
+        paths=$(echo $_remove_new_line_tmp | json tree | json -a path)
+        urls=$(echo $_remove_new_line_tmp | json tree | json -a url)
+
+        current_remove_new_line=$_remove_new_line_tmp
+
+        count=0
+        for i in $types; do
+            current_object=$(echo $current_remove_new_line | json tree | json $count)
+
+            url=$(echo $current_object | json url)
+            type=$(echo $current_object | json type)
+            path=$(echo $current_object | json path)
+
+            echo "========="
+            echo $type
+            echo $path
+            echo $url
+            echo "========="
+
+            count=$(($count + 1))
+        done
+    elif [ "$2" = "blob" ]; then
+        write_file_from_blob_type "$1" "$3"
+    fi
 }
 
-# == tree ==================================================================================================================
-
-_base_url='https://api.github.com/repos/panachainy/github-auto-release/git/trees/develop'
-_json_data=$(curl -H "Accept: application/vnd.github.v3+json" $_base_url)
-
-# if tree use this
-
-download_file $_json_data
-
-# == content ===============================================================================================================
-
-_have_content=$(curl https://api.github.com/repos/panachainy/github-auto-release/git/blobs/eb079ffdc682e0868619fda16817bad33afcbd9e)
-
-write_file_from_blob_type "$_have_content" "c.txt"
+directory_process "https://api.github.com/repos/panachainy/github-auto-release/git/trees/develop" "tree"
