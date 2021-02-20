@@ -1,28 +1,28 @@
 get_data() {
-    _current_json_data=$(curl -H "Accept: application/vnd.github.v3+json" $1)
+    echo $(curl -H "Accept: application/vnd.github.v3+json" $1)
 }
 
 remove_new_line() {
-    _remove_new_line_tmp=$(echo $1 | sed ':a;N;$!ba;s/\n//g')
+    echo $(echo $1 | sed ':a;N;$!ba;s/\n//g')
 }
 
 write_file_from_blob_type() {
-    remove_new_line "$1"
-    echo $_remove_new_line_tmp | json content | base64 -d >$2
+    removed_line_data=$(remove_new_line "$1")
+    echo $removed_line_data | json content | base64 -d >$2
 }
 
 # url / type / path
 directory_process() {
-    get_data "$1"
-    remove_new_line "$_current_json_data"
+    current_json_data=$(get_data "$1")
+    removed_line_data=$(remove_new_line "$current_json_data")
 
     if [ "$2" = "tree" ]; then
 
-        types=$(echo $_remove_new_line_tmp | json tree | json -a type)
-        paths=$(echo $_remove_new_line_tmp | json tree | json -a path)
-        urls=$(echo $_remove_new_line_tmp | json tree | json -a url)
+        types=$(echo $removed_line_data | json tree | json -a type)
+        paths=$(echo $removed_line_data | json tree | json -a path)
+        urls=$(echo $removed_line_data | json tree | json -a url)
 
-        current_remove_new_line=$_remove_new_line_tmp
+        current_remove_new_line=$removed_line_data
 
         count=0
         for i in $types; do
