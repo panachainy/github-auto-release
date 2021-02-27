@@ -7,13 +7,14 @@ remove_new_line() {
 }
 
 write_file_from_blob_type() {
-    removed_line_data=$(remove_new_line "$1")
-    echo $removed_line_data | json content | base64 -d >$2
+    echo $(remove_new_line "$1") | json content | base64 -d >$2
 }
 
 # url / type / path
 directory_process() {
+    local current_json_data
     current_json_data=$(get_data "$1")
+    local removed_line_data
     removed_line_data=$(remove_new_line "$current_json_data")
 
     if [ "$2" = "tree" ]; then
@@ -22,12 +23,18 @@ directory_process() {
         paths=$(echo $removed_line_data | json tree | json -a path)
         urls=$(echo $removed_line_data | json tree | json -a url)
 
+        local current_remove_new_line
         current_remove_new_line=$removed_line_data
 
         count=0
         for i in $types; do
+            local current_object
             current_object=$(echo $current_remove_new_line | json tree | json $count)
 
+            local url
+            local type
+            local path
+            
             url=$(echo $current_object | json url)
             type=$(echo $current_object | json type)
             path=$(echo $current_object | json path)
