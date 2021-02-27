@@ -7,18 +7,21 @@ remove_new_line() {
 }
 
 write_file_from_blob_type() {
-    echo $(remove_new_line "$1") | json content | base64 -d >$2
+    echo $(remove_new_line "$1") | json content | base64 -d > $2
 }
 
 # url / type / path
 directory_process() {
     local current_json_data
-    current_json_data=$(get_data "$1")
+    # current_json_data=$(get_data "$1")
+    current_json_data="$1"
+
     local removed_line_data
     removed_line_data=$(remove_new_line "$current_json_data")
 
+    echo $2
     if [ "$2" = "tree" ]; then
-
+        echo "xxxx"
         types=$(echo $removed_line_data | json tree | json -a type)
         paths=$(echo $removed_line_data | json tree | json -a path)
         urls=$(echo $removed_line_data | json tree | json -a url)
@@ -63,19 +66,20 @@ getMockData() {
 }
 
 ## test_remove_new_line
-test_remove_new_line=$(remove_new_line "testValue
-newLineValue
-")
-if [ "$test_remove_new_line" = "testValuenewLineValue" ]; then
-    echo "success"
-else
-    echo "fail: $test_remove_new_line"
-fi
+# test_remove_new_line=$(remove_new_line "testValue
+# newLineValue
+# ")
+# if [ "$test_remove_new_line" = "testValuenewLineValue" ]; then
+#     echo "success"
+# else
+#     echo "fail: $test_remove_new_line"
+# fi
 
 ## test_write_file_from_blob_type
-blob_mock_data=$(getMockData ./mocks/blob_example.json)
-write_file_from_blob_type "$blob_mock_data" "$(date)test2.txt"
+# blob_mock_data=$(getMockData ./mocks/blob_example.json)
+# write_file_from_blob_type "$blob_mock_data" "$(date)test2.txt"
 
 ## test_directory_process
-# tree_mock_data=$(getMockData ./mocks/tree_example.json)
-# directory_process tree_mock_data "tree"
+tree_mock_data=$(getMockData ./mocks/tree_example.json)
+directory_process $tree_mock_data tree
+# //TODO: do it.
