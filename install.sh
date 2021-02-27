@@ -72,8 +72,10 @@ else
     echo "fail: $test_remove_new_line"
 fi
 
-tree_mock_data=$(getMockData ./mocks/tree_example.json)
-blob_mock_data=$(getMockData ./mocks/blob_example.json)
-
 ## test_write_file_from_blob_type
-write_file_from_blob_type "$blob_mock_data" test2.txt
+blob_mock_data=$(getMockData ./mocks/blob_example.json)
+write_file_from_blob_type "$blob_mock_data" "$(date)test2.txt"
+
+## test_directory_process
+# tree_mock_data=$(getMockData ./mocks/tree_example.json)
+# directory_process tree_mock_data "tree"
