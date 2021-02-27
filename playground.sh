@@ -1,17 +1,17 @@
 fuction_get_string() {
-    echo "$1 asdasd;lqwkdjqwpodajksdasd"
+    echo "parameter: $1 test echo with parameter"
 }
 
 function_test_main() {
-    result_global=$(fuction_get_string "asd")
+    result_global=$(fuction_get_string "parameter1")
 
-    echo "================================="
+    echo "=1================================"
     echo $result_global
     echo "================================="
 
-    local result_local=$(echo $result_global)
-    echo "================================="
-    echo $result_global
+    local result_local
+    result_local=$(fuction_get_string "parameter2")
+    echo "=2================================"
     # FIXME: can't assign result to local variable.
     echo $result_local
     echo "================================="
