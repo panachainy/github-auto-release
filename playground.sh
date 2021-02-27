@@ -17,4 +17,11 @@ function_test_main() {
     echo "================================="
 }
 
-function_test_main
+# function_test_main
+
+result_fuction_get_string=$(fuction_get_string "parameter2")
+if [ "$result_fuction_get_string" = "parameter: parameter2 test echo with parameter" ]; then
+    echo "success"
+else
+    echo "fail: $result_fuction_get_string"
+fi
