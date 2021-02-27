@@ -3,7 +3,7 @@ get_data() {
 }
 
 remove_new_line() {
-    echo $(echo $1 | sed ':a;N;$!ba;s/\n//g')
+    echo $(echo "$1" | sed ':a;N;$!ba;s/\n//g')
 }
 
 write_file_from_blob_type() {
@@ -34,7 +34,7 @@ directory_process() {
             local url
             local type
             local path
-            
+
             url=$(echo $current_object | json url)
             type=$(echo $current_object | json type)
             path=$(echo $current_object | json path)
@@ -52,4 +52,28 @@ directory_process() {
     fi
 }
 
-directory_process $1 "tree"
+# directory_process $1 "tree"
+
+# Test section ################################################################################################
+
+## example `mockdata=$(getMockData ./mocks/tree_example.json)`
+getMockData() {
+    asd=$(json -f $1)
+    echo $asd
+}
+
+## test_remove_new_line
+test_remove_new_line=$(remove_new_line "testValue
+newLineValue
+")
+if [ "$test_remove_new_line" = "testValuenewLineValue" ]; then
+    echo "success"
+else
+    echo "fail: $test_remove_new_line"
+fi
+
+tree_mock_data=$(getMockData ./mocks/tree_example.json)
+blob_mock_data=$(getMockData ./mocks/blob_example.json)
+
+## test_write_file_from_blob_type
+write_file_from_blob_type "$blob_mock_data" test2.txt
