@@ -1,0 +1,29 @@
+{
+  "sha": "77b0fc369fe7fd9fe2517db934bd99f8ae5ca359",
+  "url": "https://api.github.com/repos/panachainy/github-auto-release/git/trees/77b0fc369fe7fd9fe2517db934bd99f8ae5ca359",
+  "tree": [
+    {
+      "path": ".devcontainer",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8dab66f1b1a7fcb8d519e9c33f92be190aa58b80",
+      "url": "https://api.github.com/repos/panachainy/github-auto-release/git/trees/8dab66f1b1a7fcb8d519e9c33f92be190aa58b80"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a7f14fe8b542c68e84dc890f5a445b9f95422d34",
+      "url": "https://api.github.com/repos/panachainy/github-auto-release/git/trees/a7f14fe8b542c68e84dc890f5a445b9f95422d34"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb079ffdc682e0868619fda16817bad33afcbd9e",
+      "size": 346,
+      "url": "https://api.github.com/repos/panachainy/github-auto-release/git/blobs/eb079ffdc682e0868619fda16817bad33afcbd9e"
+    }
+  ],
+  "truncated": false
+}
