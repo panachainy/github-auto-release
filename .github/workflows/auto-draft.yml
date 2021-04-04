@@ -2,7 +2,7 @@ name: Release Drafter
 
 on:
   push:
-    branches: [chore/clean-unnessery]
+    branches: [main]
 
 jobs:
   create_release_draft:
