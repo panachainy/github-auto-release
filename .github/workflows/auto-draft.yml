@@ -8,8 +8,14 @@ jobs:
   update_release_draft:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - name: Set version from app
+        run: |
+          echo "VERSION=$(./version.sh)" >> $GITHUB_ENV
       - uses: release-drafter/release-drafter@v5
         with:
           config-name: release-drafter.yml
+          tag: ${{ env.VERSION }}
+          version: ${{ env.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
