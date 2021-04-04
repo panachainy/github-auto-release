@@ -18,4 +18,4 @@ jobs:
           version: ${{ env.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo steps.create_release_draft.outputs.html_url
+      - run: echo $steps.create_release_draft.outputs.html_url
