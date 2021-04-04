@@ -2,7 +2,7 @@ name: Release Drafter
 
 on:
   push:
-    branches: [feature/auto-submit]
+    branches: [main]
 
 jobs:
   create_release_draft:
@@ -20,10 +20,3 @@ jobs:
           publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Try
-      #   run: |
-      #       echo $XX1
-      #       echo $XX2
-      #   env:
-      #     XX1: ${{ steps.release_drafter.outputs.html_url }}
-      #     XX2: ${{ steps.release_drafter.outputs.tag_name }}
