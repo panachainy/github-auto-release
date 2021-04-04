@@ -12,6 +12,7 @@ jobs:
       - name: Set version from app
         run: echo "VERSION=$(./version.sh)" >> $GITHUB_ENV
       - uses: release-drafter/release-drafter@v5
+        id: release_drafter
         with:
           config-name: release-drafter.yml
           tag: ${{ env.VERSION }}
@@ -21,4 +22,4 @@ jobs:
       - name: Try
         run: echo $UPLOAD_URL
         env:
-          UPLOAD_URL: ${{ steps.create_release_draft.outputs.upload_url }}
+          UPLOAD_URL: ${{ steps.release_drafter.outputs.upload_url }}
