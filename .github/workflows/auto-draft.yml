@@ -5,17 +5,18 @@ on:
     branches: [main]
 
 jobs:
-  update_release_draft:
+  create_release_draft:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set version from app
-        run: |
-          echo "VERSION=$(./version.sh)" >> $GITHUB_ENV
+        run: echo "VERSION=$(./version.sh)" >> $GITHUB_ENV
       - uses: release-drafter/release-drafter@v5
+        id: release_drafter
         with:
           config-name: release-drafter.yml
           tag: ${{ env.VERSION }}
           version: ${{ env.VERSION }}
+          publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
