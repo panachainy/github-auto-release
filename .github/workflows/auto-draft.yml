@@ -1,8 +1,8 @@
 name: Release Drafter
 
 on:
-  pull_request:
-    branches: [ release ]
+  push:
+    branches: [ main ]
 
 jobs:
   update_release_draft:
