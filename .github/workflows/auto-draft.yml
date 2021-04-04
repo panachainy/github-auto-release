@@ -20,6 +20,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Try
-        run: echo $XXX
+        run: |
+            echo $XX1
+            echo $XX2
         env:
-          XXX: ${{ steps.release_drafter.outputs.html_url }}
+          XX1: ${{ steps.release_drafter.outputs.html_url }}
+          XX2: ${{ steps.release_drafter.outputs.tag_name }}
