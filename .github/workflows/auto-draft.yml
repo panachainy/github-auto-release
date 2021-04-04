@@ -20,6 +20,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Try
-        run: echo $UPLOAD_URL
+        run: echo $XXX
         env:
-          UPLOAD_URL: ${{ steps.release_drafter.outputs.upload_url }}
+          XXX: ${{ steps.release_drafter.outputs.html_url }}
