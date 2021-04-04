@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  update_release_draft:
+  create_release_draft:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,3 +18,4 @@ jobs:
           version: ${{ env.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo steps.create_release_draft.outputs.html_url
