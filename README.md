@@ -13,3 +13,7 @@ Template: `.github/release-drafter.yml`
 Action command: `.github/workflows/pr-labeler.yml`
 
 Template: `.github/pr-labeler.yml`
+
+## Test repository
+
+https://github.com/panachainy/github-auto-release-test
