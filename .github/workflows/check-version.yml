@@ -16,6 +16,5 @@ jobs:
       - id: get_last_version
         uses: pozetroninc/github-action-get-latest-release@master
         with:
-          repository: panachainy/github-auto-release
           excludes: prerelease, draft
       - run: echo ${{ steps.get_last_version.outputs.release }}
