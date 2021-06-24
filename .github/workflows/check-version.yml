@@ -10,7 +10,7 @@ jobs:
       - id: get_last_version
         uses: pozetroninc/github-action-get-latest-release@master
         with:
-          repository: ${{ github.repository.name }}
+          repository: ${{ github.repository }}
           excludes: prerelease, draft
       - name: Check version is duplicate with previous versions or not.
         run: |
