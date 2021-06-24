@@ -14,15 +14,12 @@ jobs:
           excludes: prerelease, draft
       - name: Check version is duplicate with previous versions or not.
         run: |
-          echo "Lastest version ${{ steps.get_last_version.outputs.release }}"
-          echo "Current version $(./version.sh)"
-
           last_version="$(echo ${{ steps.get_last_version.outputs.release }} | sed 's/v//')"
           current_version="$(echo $(./version.sh) | sed 's/v//')"
 
           echo "Lastest version: $last_version"
           echo "Current version: $current_version"
-          echo '============================'
+          echo '====================================='
 
           if [ "$last_version" == "$current_version" ]; then
               echo "Error version is the save previous version should be upgrade your version before merge."
