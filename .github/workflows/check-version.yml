@@ -12,4 +12,4 @@ jobs:
       - run: echo ${{ steps.get_version.outputs.version }}
       - run: echo ${{ steps.get_version.outputs.version-without-v }}
       - run: echo $(./version.sh)
-      - run: echo ${{ github.event.release .tag_name }}
+      - run: echo ${{ github.event.release.tag_name }}
