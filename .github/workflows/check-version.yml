@@ -22,9 +22,9 @@ jobs:
           echo '====================================='
 
           if [ "$last_version" == "$current_version" ]; then
-              echo "Error version is the save previous version should be upgrade your version before merge."
+              echo "Error version is the same previous version should be upgrade your version before merge."
               exit 1
           else
-              echo "Strings are not equal"
+              echo "Version is not duplicate."
               exit 0
           fi
