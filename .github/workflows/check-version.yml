@@ -13,3 +13,9 @@ jobs:
       - run: echo ${{ steps.get_version.outputs.version-without-v }}
       - run: echo $(./version.sh)
       - run: echo ${{ github.event.release.tag_name }}
+      - id: get_last_version
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: panachainy/github-auto-release
+          excludes: prerelease, draft
+      - run: echo ${{ steps.get_last_version.outputs.release }}
