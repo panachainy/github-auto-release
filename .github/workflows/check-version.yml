@@ -1,4 +1,4 @@
-name: Release Drafter
+name: Check release tag
 
 on: push
 
@@ -7,10 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set version from app
-        run: echo "VERSION=$(./version.sh)" >> $GITHUB_ENV
       - id: get_version
         uses: battila7/get-version-action@v2
       - run: echo ${{ steps.get_version.outputs.version }}
       - run: echo ${{ steps.get_version.outputs.version-without-v }}
       - run: echo $(./version.sh)
+      - run: echo ${{ github.event.release .tag_name }}
